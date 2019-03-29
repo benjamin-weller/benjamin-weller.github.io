@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Just One More Step</title>
+        <title>JSON Paths in Python</title>
         <link rel="stylesheet" href="./theme/css/main.css" />
 </head>
 
@@ -10,13 +10,18 @@
         <header id="banner" class="body">
                 <h1><a href="./">Just One More Step </a></h1>
                 <nav><ul>
-                    <li><a href="./category/blog.html">Blog</a></li>
+                    <li class="active"><a href="./category/blog.html">Blog</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./json_paths_in_python.html" rel="bookmark"
+           title="Permalink to JSON Paths in Python">JSON Paths in Python</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="./json_paths_in_python.html">JSON Paths in Python</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2019-03-29T10:20:00-08:00">
                 Published: Fri 29 March 2019
@@ -27,7 +32,7 @@
         </address>
 <p>In <a href="./category/blog.html">Blog</a>.</p>
 
-</footer><!-- /.post-info --><h2>Working with JSON paths in Python</h2>
+</footer><!-- /.post-info -->      <h2>Working with JSON paths in Python</h2>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="k">def</span> <span class="nf">json_reference</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">json</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="n">current_reference</span> <span class="o">=</span> <span class="n">json</span>
@@ -54,37 +59,11 @@
 I don't know about other developers but I personally like to see the entire JSON response before trying to take out individual fields. As such I get the full response via Postman or Firefox, I then paste them in to VS Code and extract their paths using the extension.
 Following my last step, I'm now left with a list of strings that should represent that JSON path; but I want to use them in Python, thus the notation differs a bit.
 I was shocked after working with React for a while that there wasn't an immediately obvious equivalent to <a href="https://lodash.com/docs/4.17.11#get">Lowdash's .get function</a>. As such my code above aims to implement that functionality.
-As a new Pythonista I would welcome any ideas on how to solve this in a more elegant way.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+As a new Pythonista I would welcome any ideas on how to solve this in a more elegant way.</p>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./hello.html" rel="bookmark"
-                           title="Permalink to Hello">Hello</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-03T10:20:00-09:00">
-                Published: Mon 03 December 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/ben.html">Ben</a>
-        </address>
-<p>In <a href="./category/blog.html">Blog</a>.</p>
-
-</footer><!-- /.post-info -->                <p>Hello,</p>
-<p>This is my personal blog, I'll be posting things that interest me. My topics could range from programming, and science to far out things like business or finance.</p>
-                <a class="readmore" href="./hello.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
         </section><!-- /#extras -->
 </body>

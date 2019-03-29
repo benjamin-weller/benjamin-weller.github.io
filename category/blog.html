@@ -16,10 +16,10 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../hey-brother.html">Hey Brother</a></h1>
+                    <h1 class="entry-title"><a href="../json_paths_in_python.html">JSON Paths in Python</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2019-02-09T16:50:00-09:00">
-                Published: Sat 09 February 2019
+        <abbr class="published" title="2019-03-29T10:20:00-08:00">
+                Published: Fri 29 March 2019
         </abbr>
 
         <address class="vcard author">
@@ -27,7 +27,34 @@
         </address>
 <p>In <a href="../category/blog.html">Blog</a>.</p>
 
-</footer><!-- /.post-info --><p>Hey this is a test to see if facebook ads worked.</p>                </article>
+</footer><!-- /.post-info --><h2>Working with JSON paths in Python</h2>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="k">def</span> <span class="nf">json_reference</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">json</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">current_reference</span> <span class="o">=</span> <span class="n">json</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\w{1,})?\[(\d+)\]*&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">match</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span> <span class="k">if</span> <span class="n">item</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">current_reference</span><span class="p">:</span>
+                    <span class="n">current_reference</span> <span class="o">=</span> <span class="n">current_reference</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">index</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">current_reference</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_reference</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+                    <span class="n">current_reference</span> <span class="o">=</span> <span class="n">current_reference</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">default</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">current_reference</span><span class="p">:</span>
+                <span class="n">current_reference</span> <span class="o">=</span> <span class="n">current_reference</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">default</span>
+    <span class="k">return</span> <span class="n">current_reference</span>
+</pre></div>
+
+
+<p>My workflow current revolves around the <a href="https://marketplace.visualstudio.com/items?itemName=richie5um2.vscode-statusbar-json-path">JSONPath StatusBar extension</a> in VS Code.
+I don't know about other developers but I personally like to see the entire JSON response before trying to take out individual fields. As such I get the full response via Postman or Firefox, I then paste them in to VS Code and extract their paths using the extension.
+Following my last step, I'm now left with a list of strings that should represent that JSON path; but I want to use them in Python, thus the notation differs a bit.
+I was shocked after working with React for a while that there wasn't an immediately obvious equivalent to <a href="https://lodash.com/docs/4.17.11#get">Lowdash's .get function</a>. As such my code above aims to implement that functionality.
+As a new Pythonista I would welcome any ideas on how to solve this in a more elegant way.</p>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
@@ -60,16 +87,5 @@
                 </section><!-- /#content -->
         <section id="extras" class="body">
         </section><!-- /#extras -->
-
-        <!-- <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address>
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        
-        </footer> -->
-        <!-- /#contentinfo -->
-
 </body>
 </html>
